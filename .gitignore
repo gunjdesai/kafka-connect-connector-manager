@@ -13,3 +13,14 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Idea Ignore Files
+.idea/**/*
+
+# Ignore all config files except sample
+configs/*.yml
+!configs/sample.yml
+
+# Ignore all run scripts except sample
+run_*.sh
+!run_sample.sh

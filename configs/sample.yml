@@ -1,0 +1,17 @@
+app:
+  host: "localhost"
+  port: "8080"
+  log:
+    level: "info"
+db:
+  host: "#filled-from-env"
+  port: "#filled-from-env"
+  name: "#filled-from-env"
+  username: "#filled-from-env"
+  password: "#filled-from-env"
+connect:
+  url: "<your-kafka-connect-url>"
+kafka:
+  bootstrap-servers: "<your-kafka-bootstrap-url>"
+connectors:
+  - { id: 6, name: "dbz_mysql_sample", table-name: "mydb.sample", type: "debezium", topic: "warehouse.mysql.sample" }
