@@ -23,7 +23,7 @@ func main() {
 		//TODO: call validation directly
 	}
 
-	if connectorName == "" && mode != constants.STATUS_MODE {
+	if connectorName == "" && mode != constants.STATUS_MODE && mode != constants.RESUME_ALL_MODE && mode != constants.PAUSE_ALL_MODE {
 		helpers.PrintLog("Connector Name cannot be empty, pass connector name by using -connector-name or --connector-name", "", false, nil)
 		os.Exit(10)
 	}
@@ -36,6 +36,10 @@ func main() {
 		handlers.DeleteConnector(connectorName)
 	case constants.STATUS_MODE:
 		handlers.StatusConnector()
+	case constants.PAUSE_ALL_MODE:
+		handlers.PauseAllConnectors()
+	case constants.RESUME_ALL_MODE:
+		handlers.ResumeAllConnectors()
 	default:
 		helpers.PrintLog("Invalid Mode, Shutting down", "", false, nil)
 		os.Exit(10)
@@ -46,13 +50,13 @@ func main() {
 
 func readFromCli() (string, string, bool) {
 
-	modeOptions := fmt.Sprintf("Options are %s, %s & %s", constants.UPSERT_MODE, constants.DELETE_MODE, constants.STATUS_MODE)
+	modeOptions := fmt.Sprintf("Options are %s, %s, %s, %s & %s", constants.UPSERT_MODE, constants.DELETE_MODE, constants.STATUS_MODE, constants.PAUSE_ALL_MODE, constants.RESUME_ALL_MODE)
 	mode := flag.String("mode", "", "Mode to run the utility under, "+modeOptions)
 	connectorName := flag.String("connector-name", "", "Name of the connector you want to modify")
 	skipValidation := flag.Bool("skip-validation", false, "Skip validation of config, default value is false")
 	flag.Parse()
 
-	if *mode != constants.UPSERT_MODE && *mode != constants.DELETE_MODE && *mode != constants.STATUS_MODE {
+	if *mode != constants.UPSERT_MODE && *mode != constants.DELETE_MODE && *mode != constants.STATUS_MODE && *mode != constants.PAUSE_ALL_MODE && *mode != constants.RESUME_ALL_MODE {
 		helpers.PrintLog("Invalid Mode, ", modeOptions, false, nil)
 		os.Exit(10)
 	}

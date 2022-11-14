@@ -45,6 +45,16 @@ func getConnectorStatusColor(state string) string {
 
 }
 
+func PrintPauseConnectorLog(connector string) {
+	print(constants.CYAN_COLOR, "Successfully Paused: ")
+	println(getConnectorStatusColor("FAILED"), connector)
+}
+
+func PrintResumeConnectorLog(connector string) {
+	print(constants.CYAN_COLOR, "Successfully Resumed: ")
+	println(getConnectorStatusColor("RUNNING"), connector)
+}
+
 func PrintConnectorStatusLog(name string, connector response.Connector, tasks []response.Task) {
 
 	var working = true

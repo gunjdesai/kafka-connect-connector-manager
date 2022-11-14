@@ -39,6 +39,14 @@ func StatusConnector() {
 	controllers.GetAllConnectorStatus()
 }
 
+func PauseAllConnectors() {
+	controllers.PauseAllConnectors()
+}
+
+func ResumeAllConnectors() {
+	controllers.ResumeAllConnectors()
+}
+
 func getConnectorConfig(name string) (*conf.Connector, error) {
 
 	for _, v := range globals.Config.Connectors {
